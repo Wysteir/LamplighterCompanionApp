@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  LamplighterCompanionApp
+//  LamplighterApp
 //
-//  Created by Castro Eugene Allen A. on 2/13/19.
-//  Copyright © 2019 Castro Eugene Allen A. All rights reserved.
+//  Created by Van Osch Benjamin D. on 2/13/19.
+//  Copyright © 2019 Van Osch Benjamin D. All rights reserved.
 //
 
 import UIKit
