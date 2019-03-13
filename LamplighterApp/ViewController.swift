@@ -13,6 +13,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
+        
+        print("Initialized")
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,14 +38,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func tapPiece(_ gestureRecognizer : UITapGestureRecognizer ) {
-        let debugInfo = gestureRecognizer.numberOfTouches
-        print(debugInfo)
-    }
-    
-    @IBAction func handlePan(recognizer:UIPanGestureRecognizer) {
-        let translation = recognizer.translation(in: self.view)
-        print(translation.x)
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        print(gesture.direction)
     }
 
 
