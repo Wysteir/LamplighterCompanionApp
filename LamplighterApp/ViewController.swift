@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var holdingCounter:Int = 0;
+    var isHolding:Bool = false;
     private var lastSwipeBeginningPoint: CGPoint?
     
     override func viewDidLoad() {
