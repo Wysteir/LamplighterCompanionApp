@@ -22,16 +22,16 @@ class ViewController: UIViewController {
         //print("Timer fired!")
         if(isHolding){
             if(releaseCounter != 0){
-                //print("Release")
-                //print(releaseCounter)
+                print("Released For: ")
+                print(releaseCounter)
                 releaseCounter=0
             }//end if release counter
             holdingCounter+=1;
         }//end if isholding
         else{
             if(holdingCounter != 0){
-                //print("Holding")
-                //print(holdingCounter)
+                print("Held For: ")
+                print(holdingCounter)
                 holdingCounter = 0
             }//end if holding counter
             if(releaseCounter<releaseCountMax){
