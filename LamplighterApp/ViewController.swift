@@ -18,7 +18,41 @@ class ViewController: UIViewController {
     
     //let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     
-    @objc func fireTimer() {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(gestureTimer), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: .commonModes)
+        
+        let doubleTapRec = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(gesture:)))
+        doubleTapRec.numberOfTapsRequired = 2;
+        self.view.addGestureRecognizer(doubleTapRec)
+        
+        let tapRec = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
+        tapRec.numberOfTapsRequired = 1;
+        //tapRec.require(toFail: doubleTapRec)
+        self.view.addGestureRecognizer(tapRec)
+        
+        let longPressRec = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture:)))
+        self.view.addGestureRecognizer(longPressRec)
+        
+        let panRec = UIPanGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
+        self.view.addGestureRecognizer(panRec)
+        
+        print("Initialized")
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if (gestureRecognizer is UIPanGestureRecognizer || gestureRecognizer is UILongPressGestureRecognizer) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    @objc func gestureTimer() {
         //print("Timer fired!")
         if(isHolding){
             if(releaseCounter != 0){
@@ -39,38 +73,6 @@ class ViewController: UIViewController {
             }//end if releaseCounter
         }//end else isHolding
     }//end firetimer
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: .commonModes)
-        
-        /*let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
-        
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
-        
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
-        swipeUp.direction = .up
-        self.view.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(gesture:)))
-        swipeDown.direction = .down
-        self.view.addGestureRecognizer(swipeDown)*/
-        
-        let tapRec = UITapGestureRecognizer(target: self, action: #selector(handleTap(gesture:)))
-        self.view.addGestureRecognizer(tapRec)
-        
-        let panRec = UIPanGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
-        self.view.addGestureRecognizer(panRec)
-        
-        print("Initialized")
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,47 +80,54 @@ class ViewController: UIViewController {
     }
     
     @objc func handleTap(gesture: UITapGestureRecognizer) -> Void {
+        
         if gesture.state == .ended {
             // handling code
             print("Tap")
         }//end if
     }//end handle tap
     
+    @objc func handleDoubleTap(gesture: UITapGestureRecognizer) -> Void {
+        
+        if gesture.state == .ended {
+            // handling code
+            print("DoubleTap")
+        }//end if
+    }//end handle tap
     
     @objc func handleSwipe(gesture: UISwipeGestureRecognizer) -> Void {
-        /*print(gesture.direction.rawValue)
-        
-        switch gesture.direction.rawValue {
-        case 1:
-            print("This is going right")
-        case 2:
-            print("This is going left")
-        case 4:
-            print("This is going up")
-        case 8:
-            print("This is going down")
-        default:
-            print("Default Case")
-        }//end switch*/
         
         if gesture.state == .began {
-            print("Begin")
+            print("Swipe Begin")
             isHolding = true;
             lastSwipeBeginningPoint = gesture.location(in: gesture.view)
-        }//end if
+        }
         else if gesture.state == .ended {
-            print("End")
+            print("Swipe End")
             guard let beginPoint = lastSwipeBeginningPoint else {
                 return
             }
             isHolding = false;
             let endPoint = gesture.location(in: gesture.view)
-            //print("Point: ")
-            //print(endPoint.x - beginPoint.x)
-            //print(endPoint.y - beginPoint.y)
+            print("Swipe Co-ords: ")
+            print(endPoint.x - beginPoint.x)
+            print(endPoint.y - beginPoint.y)
         }//end else if
         
     }//end handle gesture
+    
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) -> Void{
+        
+        if(gesture.state == .began){
+            print("LongPress Begin")
+            isHolding = true;
+        }
+        else if(gesture.state == .ended){
+            print("LongPress End")
+            isHolding = false;
+        }
+        
+    }
 
 
 }
