@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12587F912270E99B00A0CD75 /* tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12587F8F2270E99B00A0CD75 /* tap.mp3 */; };
+		12587F922270E99B00A0CD75 /* doubleTap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12587F902270E99B00A0CD75 /* doubleTap.mp3 */; };
+		12587F952270F85100A0CD75 /* woosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12587F932270F85100A0CD75 /* woosh.mp3 */; };
+		12587F962270F85100A0CD75 /* charge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12587F942270F85100A0CD75 /* charge.mp3 */; };
+		12587F992271025A00A0CD75 /* stab.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12587F972271025A00A0CD75 /* stab.mp3 */; };
+		12587F9A2271025A00A0CD75 /* laser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 12587F982271025A00A0CD75 /* laser.mp3 */; };
 		1ABBC0972214BB2200B23AA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC0962214BB2200B23AA6 /* AppDelegate.swift */; };
 		1ABBC0992214BB2200B23AA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABBC0982214BB2200B23AA6 /* ViewController.swift */; };
 		1ABBC09C2214BB2200B23AA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABBC09A2214BB2200B23AA6 /* Main.storyboard */; };
@@ -34,6 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12587F8F2270E99B00A0CD75 /* tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tap.mp3; sourceTree = "<group>"; };
+		12587F902270E99B00A0CD75 /* doubleTap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = doubleTap.mp3; sourceTree = "<group>"; };
+		12587F932270F85100A0CD75 /* woosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woosh.mp3; sourceTree = "<group>"; };
+		12587F942270F85100A0CD75 /* charge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = charge.mp3; sourceTree = "<group>"; };
+		12587F972271025A00A0CD75 /* stab.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stab.mp3; sourceTree = "<group>"; };
+		12587F982271025A00A0CD75 /* laser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laser.mp3; sourceTree = "<group>"; };
 		1ABBC0932214BB2100B23AA6 /* LamplighterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LamplighterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABBC0962214BB2200B23AA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ABBC0982214BB2200B23AA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +86,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12587F8E2270E96B00A0CD75 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				12587F982271025A00A0CD75 /* laser.mp3 */,
+				12587F972271025A00A0CD75 /* stab.mp3 */,
+				12587F942270F85100A0CD75 /* charge.mp3 */,
+				12587F932270F85100A0CD75 /* woosh.mp3 */,
+				12587F902270E99B00A0CD75 /* doubleTap.mp3 */,
+				12587F8F2270E99B00A0CD75 /* tap.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		1ABBC08A2214BB2100B23AA6 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +122,7 @@
 		1ABBC0952214BB2100B23AA6 /* LamplighterApp */ = {
 			isa = PBXGroup;
 			children = (
+				12587F8E2270E96B00A0CD75 /* Sounds */,
 				1ABBC0962214BB2200B23AA6 /* AppDelegate.swift */,
 				1ABBC0982214BB2200B23AA6 /* ViewController.swift */,
 				1ABBC09A2214BB2200B23AA6 /* Main.storyboard */,
@@ -229,9 +255,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12587F992271025A00A0CD75 /* stab.mp3 in Resources */,
 				1ABBC0A12214BB2300B23AA6 /* LaunchScreen.storyboard in Resources */,
+				12587F9A2271025A00A0CD75 /* laser.mp3 in Resources */,
+				12587F952270F85100A0CD75 /* woosh.mp3 in Resources */,
 				1ABBC09E2214BB2300B23AA6 /* Assets.xcassets in Resources */,
+				12587F912270E99B00A0CD75 /* tap.mp3 in Resources */,
+				12587F922270E99B00A0CD75 /* doubleTap.mp3 in Resources */,
 				1ABBC09C2214BB2200B23AA6 /* Main.storyboard in Resources */,
+				12587F962270F85100A0CD75 /* charge.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
