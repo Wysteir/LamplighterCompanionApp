@@ -7,9 +7,35 @@
 //
 
 import UIKit
+import AVFoundation
+
 
 class ViewController: UIViewController {
 
+    //var tapSFX: AVAudioPlayer?
+    //var doubleTapSFX: AVAudioPlayer?
+    //var longPressSFX: AVAudioPlayer?
+    
+    var soundPlayer: AVAudioPlayer?
+    
+    let tapSFXpath = Bundle.main.path(forResource: "tap.mp3", ofType:nil)!
+    var tapSFXurl: URL!
+    
+    let doubleTapSFXpath = Bundle.main.path(forResource: "doubleTap.mp3", ofType:nil)!
+    var doubleTapSFXurl: URL!
+    
+    let longPressSFXpath = Bundle.main.path(forResource: "charge.mp3", ofType:nil)!
+    var longPressSFXurl: URL!
+    
+    let swipeSFXpath = Bundle.main.path(forResource: "woosh.mp3", ofType:nil)!
+    var swipeSFXurl: URL!
+    
+    let longPressReleaseSFXpath = Bundle.main.path(forResource: "laser.mp3", ofType:nil)!
+    var longPressReleaseSFXurl: URL!
+    
+    let swipeReleaseSFXpath = Bundle.main.path(forResource: "stab.mp3", ofType:nil)!
+    var swipeReleaseSFXurl: URL!
+    
     var holdingCounter:Int = 0;
     var releaseCounter:Int = 0;
     let releaseCountMax:Int = 100;
@@ -22,6 +48,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        soundPlayer = AVAudioPlayer();
+        
+        tapSFXurl = URL(fileURLWithPath: tapSFXpath)
+        doubleTapSFXurl = URL(fileURLWithPath: doubleTapSFXpath)
+        longPressSFXurl = URL(fileURLWithPath: longPressSFXpath)
+        swipeSFXurl = URL(fileURLWithPath: swipeSFXpath)
+        longPressReleaseSFXurl = URL(fileURLWithPath: longPressReleaseSFXpath)
+        swipeReleaseSFXurl = URL(fileURLWithPath: swipeReleaseSFXpath)
         
         let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(gestureTimer), userInfo: nil, repeats: true)
         RunLoop.current.add(timer, forMode: .commonModes)
@@ -84,6 +119,7 @@ class ViewController: UIViewController {
         if gesture.state == .ended {
             // handling code
             print("Tap")
+            playSound(url: tapSFXurl)
         }//end if
     }//end handle tap
     
@@ -92,6 +128,7 @@ class ViewController: UIViewController {
         if gesture.state == .ended {
             // handling code
             print("DoubleTap")
+            playSound(url: doubleTapSFXurl)
         }//end if
     }//end handle tap
     
@@ -99,11 +136,13 @@ class ViewController: UIViewController {
         
         if gesture.state == .began {
             print("Swipe Begin")
+            playSound(url: swipeSFXurl)
             isHolding = true;
             lastSwipeBeginningPoint = gesture.location(in: gesture.view)
         }
         else if gesture.state == .ended {
             print("Swipe End")
+            playSound(url: swipeReleaseSFXurl)
             guard let beginPoint = lastSwipeBeginningPoint else {
                 return
             }
@@ -120,11 +159,24 @@ class ViewController: UIViewController {
         
         if(gesture.state == .began){
             print("LongPress Begin")
+            playSound(url: longPressSFXurl)
             isHolding = true;
         }
         else if(gesture.state == .ended){
             print("LongPress End")
+            playSound(url: longPressReleaseSFXurl)
             isHolding = false;
+        }
+        
+    }
+    
+    func playSound(url: URL)->Void{
+        
+        do {
+            soundPlayer = try AVAudioPlayer(contentsOf: url)
+            soundPlayer?.play()
+        } catch {
+            print("Invalid Sound")
         }
         
     }
